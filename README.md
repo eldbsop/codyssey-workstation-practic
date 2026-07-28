@@ -133,6 +133,31 @@ eec57c0f3559   hello-world   "/hello"  Exited (0)
 
 **컨테이너 종료/유지 관찰**: `bash` 세션에서 `exit`을 입력하면 컨테이너 내 메인 프로세스가 종료되어 컨테이너도 즉시 정지(Exited) 상태가 된다. 반면 `docker exec`는 이미 실행 중인 컨테이너에 새 프로세스를 추가로 붙이는 방식이라, `exec`로 들어간 세션을 종료해도 원래 컨테이너는 계속 실행 상태를 유지한다.
 
+### 4-4-1. docker logs / docker stats
+
+```bash
+$ docker ps
+CONTAINER ID   IMAGE         COMMAND               STATUS         PORTS
+16a84772dc28   ubuntu        "sleep infinity"      Up 26 minutes
+e863d7eb8226   my-web:1.0    "/docker-entrypoint…" Up 29 minutes  0.0.0.0:8082->80/tcp
+1958d9a63f34   my-web:1.0    "/docker-entrypoint…" Up 31 minutes  0.0.0.0:8081->80/tcp
+c386c5bf639c   my-web:1.0    "/docker-entrypoint…" Up 34 minutes  0.0.0.0:8080->80/tcp
+
+$ docker logs my-web-container
+...
+2026/07/28 11:01:42 [notice] "GET / HTTP/1.1" 200 136 "curl/8.7.1"
+2026/07/28 11:02:13 [notice] "GET / HTTP/1.1" 200 136 "Mozilla/5.0 ..."
+
+$ docker stats --no-stream
+CONTAINER ID   NAME              CPU %   MEM USAGE / LIMIT   MEM %
+16a84772dc28   vol-test2         0.00%   1.418MiB / 3.894GiB 0.04%
+e863d7eb8226   mount-test        0.00%   5.715MiB / 3.894GiB 0.14%
+1958d9a63f34   my-web-container2 0.00%   5.387MiB / 3.894GiB 0.14%
+c386c5bf639c   my-web-container  0.00%   5.602MiB / 3.894GiB 0.14%
+```
+
+**검증 방법**: `docker logs`로 nginx 컨테이너의 실제 요청 처리 기록(접속 로그)을 확인하고, `docker stats --no-stream`으로 실행 중인 컨테이너들의 CPU/메모리 자원 사용량을 한 번에 점검함.
+
 ### 4-5. Dockerfile 기반 커스텀 이미지 제작
 
 **선택한 베이스**: `nginx:alpine` (방식 A — 웹서버 베이스 이미지 활용 + 정적 콘텐츠 교체)
