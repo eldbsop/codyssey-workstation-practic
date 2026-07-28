@@ -195,6 +195,8 @@ $ docker run -d -p 8081:80 --name my-web-container2 my-web:1.0
 
 - 브라우저 접속 1: `http://localhost:8080/` → “Hello, this is my Docker web server!” 정상 출력 (스크린샷 첨부)
 - 브라우저 접속 2: `http://localhost:8081/` → 동일 내용 정상 출력 (스크린샷 첨부)
+![포트 8080 접속 화면](images/port-8080.png)
+![포트 8081 접속 화면](images/port-8081.png)
 
 ### 4-7. 바인드 마운트 반영 확인
 
@@ -260,6 +262,7 @@ Receiving objects: 100% (3/3), done.
 
 - VSCode 계정 메뉴에서 **“eldbsop (GitHub)”** 로 로그인 완료 확인 (스크린샷 첨부)
 - 클론한 저장소를 VSCode로 열어 `README.md` 등 파일 탐색기에서 확인
+![VSCode GitHub 로그인 화면](images/vscode-github-login.png)
 
 ## 5) 트러블슈팅
 
