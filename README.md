@@ -55,7 +55,8 @@ total 0
 drwxr-xr-x  3 mac  staff   96  7월 28 17:28 .
 drwxr-x---+ 19 mac  staff  608  7월 28 17:24 ..
 -rw-r--r--  1 mac  staff    0  7월 28 17:27 hello.txt
-```
+$ cat hello.txt
+(빈 파일이라 출력 없음)
 
 **검증 방법**: `ls -la` 결과로 생성/복사/이름변경/삭제가 의도대로 반영되었는지 매 단계 확인.
 
