@@ -206,6 +206,7 @@ $ docker run -d -p 8082:80 --name mount-test -v $(pwd)/site:/usr/share/nginx/htm
 ```
 
 - 변경 전: `localhost:8082` 접속 시 “Hello, this is my Docker web server!” 출력
+  ![바인드 마운트 변경 전](images/bind-mount-before.png)
 - 호스트에서 파일 수정:
 
 ```bash
